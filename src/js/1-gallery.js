@@ -1,4 +1,6 @@
 `use strict`;
+import SimpleLightbox from "simplelightbox"
+import "simplelightbox/dist/simple-lightbox.min.css"
 const images = [
   {
     preview:
@@ -65,30 +67,27 @@ const images = [
   },
 ];
 
+
 const gallery = document.querySelector(".gallery");
-const listItems = images.map(
-  ({ preview, original, description }) => {
+
+const listItems = images
+  .map(({ preview, original, description }) => {
     return `
-    <li class="gallery-item">
-  <a class="gallery-link" href="${original}">
-    <img
-      class="gallery-image"
-      src="${preview}"
-       data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-</li>`
+      <li class="gallery-item">
+        <a class="gallery-link" href="${original}">
+          <img
+            class="gallery-image"
+            src="${preview}"
+            data-source="${original}"
+            alt="${description}"
+          />
+        </a>
+      </li>`;
   })
   .join("");
-gallery.innerHTML = listItems;
 
-gallery.addEventListener('click', event => {
-  event.preventDefault();
-  if (event.target.nodeName !== 'IMG') return;
-  const bigImg = event.target.dataset.source;
-  const instance = basicLightbox.create(`
-    <img src="${bigImg}" alt ="${event.target.alt}"/>
-  `);
-  instance.show();
+  gallery.innerHTML = listItems;
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
 });
