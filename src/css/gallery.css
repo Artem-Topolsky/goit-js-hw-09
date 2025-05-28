@@ -43,7 +43,6 @@ body {
   border-radius: 12px;
 }
 
-/* Адаптация под экраны */
 @media (max-width: 768px) {
   .gallery-item {
     flex-basis: calc((100% - 24px) / 2);
@@ -56,11 +55,9 @@ body {
   }
 }
 
-/* Стили для модального окна SimpleLightbox */
 .sl-overlay {
   background: rgba(0, 0, 0, 0.85) !important;
 }
-
 .sl-wrapper {
   animation: fadeIn 0.3s ease forwards;
 }
